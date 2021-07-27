@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(MaterialApp(
+    home: HomePage(),
+  ));
 }
 
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: HomePage(),
-    );
-  }
-}
-
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
+
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  int level = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -29,20 +28,25 @@ class HomePage extends StatelessWidget {
       ),
       body: Padding(
         padding: EdgeInsets.fromLTRB(30, 40, 30, 0),
-        child: FormID(),
+        child: FormID(level),
       ),
+      floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            setState(() {
+              level++;
+            });
+          },
+          child: Icon(
+            Icons.add,
+          )),
     );
   }
 }
 
-class FormID extends StatefulWidget {
-  const FormID({Key? key}) : super(key: key);
+class FormID extends StatelessWidget {
+  const FormID(this.level);
 
-  @override
-  _FormIDState createState() => _FormIDState();
-}
-
-class _FormIDState extends State<FormID> {
+  final int level;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -98,7 +102,7 @@ class _FormIDState extends State<FormID> {
           ),
         ),
         Text(
-          '8',
+          '$level',
           style: TextStyle(
             color: Colors.amberAccent[200],
             fontWeight: FontWeight.bold,
