@@ -107,6 +107,20 @@ class _FormIDState extends State<FormID> {
           ),
         ),
         SizedBox(height: 30.0),
+        Row(
+          children: [
+            Icon(
+              Icons.email,
+              color: Colors.grey[400],
+            ),
+            SizedBox(width: 10.0),
+            Text(
+              'chun.li@street.fighter.com',
+              style: TextStyle(
+                  color: Colors.grey[400], fontSize: 18.0, letterSpacing: 1.0),
+            )
+          ],
+        )
       ],
     );
   }
